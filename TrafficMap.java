@@ -96,12 +96,12 @@ public class TrafficMap {
     {
         int prevX = vehicle.getX();
         int prevY = vehicle.getY();
-        Cell carCell = trafficBoard[vehicle.getY()][vehicle.getX()];
+        Occupant carOccupant = trafficBoard[vehicle.getY()][vehicle.getX()].getOccupant();
         vehicle.move();
-        Cell roadCell = trafficBoard[vehicle.getY()][vehicle.getX()];
+        Occupant roadOccupant = trafficBoard[vehicle.getY()][vehicle.getX()].getOccupant();
 
-        trafficBoard[vehicle.getY()][vehicle.getX()] = carCell;
-        trafficBoard[prevY][prevX] = roadCell;
+        trafficBoard[vehicle.getY()][vehicle.getX()].setOccupant(carOccupant);
+        trafficBoard[prevY][prevX].setOccupant(roadOccupant);
     }
 
     private void printMap()
