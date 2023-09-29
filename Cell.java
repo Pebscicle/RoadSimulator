@@ -11,6 +11,7 @@ public class Cell {
      */
     private Occupant cellOccupant;
     public Occupant getOccupant(){return cellOccupant;}
+    public void setOccupant(Occupant o){cellOccupant = o;}
 
 
     public Cell(Occupant occupant)

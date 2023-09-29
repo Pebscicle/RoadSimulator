@@ -15,6 +15,7 @@ public class TrafficMap {
      * * * * * | * * * * *
      * 
      */
+    private boolean running = true;
     private Cell[][] trafficBoard;
 
     private int X;
@@ -67,18 +68,50 @@ public class TrafficMap {
                 }
             }
         }
-        //setup car:
-        System.out.println("x"+vehicle.getX());
-        System.out.println("y"+vehicle.getY());
         trafficBoard[vehicle.getY()][vehicle.getX()] = new Cell(vehicle); 
-
         printMap();
+    }
+
+    public void startTraffic()
+    {
+        while(running)
+        {
+            //DO ALL BACKGROUND LOGIC
+            moveVehicles();
+
+            //PRINT BOARD!
+            printMap();
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
     //PRIVATE METHODS
 
+    private void moveVehicles()
+    {
+        int prevX = vehicle.getX();
+        int prevY = vehicle.getY();
+        Cell carCell = trafficBoard[vehicle.getY()][vehicle.getX()];
+        vehicle.move();
+        Cell roadCell = trafficBoard[vehicle.getY()][vehicle.getX()];
+
+        trafficBoard[vehicle.getY()][vehicle.getX()] = carCell;
+        trafficBoard[prevY][prevX] = roadCell;
+    }
+
     private void printMap()
     {
+        //CLEAR PREV FRAME
+        for(int i=0; i < 40; i++)
+        {
+            System.out.println();
+        }
+
         for(int i = 0; i < trafficBoard.length; i ++)
         {
             for(int j = 0; j < trafficBoard[0].length; j++)

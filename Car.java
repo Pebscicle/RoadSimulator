@@ -28,4 +28,23 @@ public class Car extends Vehicle{
         this.dir = heading;
     }
 
+    public void move()
+    {
+        switch(dir)
+        {
+            case "N":
+                Y--;
+                break;
+            case "W":
+                X--;
+                break;
+            case "E":
+                X++;
+                break;
+            case "S":
+                Y++;
+                break;
+        }
+    }
+
 }
