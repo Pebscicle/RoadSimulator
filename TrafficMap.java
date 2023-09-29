@@ -1,7 +1,6 @@
 import java.lang.Thread;
 import java.util.Random;
 
-import javax.management.relation.RoleNotFoundException;
 
 public class TrafficMap {
     
@@ -21,6 +20,12 @@ public class TrafficMap {
     private int X;
     private int Y;
 
+    private Car vehicle;
+
+    private int xRoad;
+    private int yRoad;
+
+    
     /**
      * Setup of the board.
      * @param x - Length of map
@@ -31,17 +36,14 @@ public class TrafficMap {
         this.X = x;
         this.Y = y;
         trafficBoard = new Cell[y][x];
+        Random rd = new Random();
+        xRoad = rd.nextInt(Y);
+        yRoad = rd.nextInt(X);
+        this.vehicle = new Car(0, xRoad, "E");
     }
 
     public void initTrafficMap()
     {
-        Random rd = new Random();
-        int xRoad = rd.nextInt(Y);
-        int yRoad = rd.nextInt(X);
-
-        System.out.println("x road: " + xRoad);
-        System.out.println("y road: " + yRoad);
-
 
         for(int i = 0; i < trafficBoard.length; i ++)
         {
@@ -65,9 +67,15 @@ public class TrafficMap {
                 }
             }
         }
+        //setup car:
+        System.out.println("x"+vehicle.getX());
+        System.out.println("y"+vehicle.getY());
+        trafficBoard[vehicle.getY()][vehicle.getX()] = new Cell(vehicle); 
 
         printMap();
     }
+
+    //PRIVATE METHODS
 
     private void printMap()
     {

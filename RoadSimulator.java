@@ -7,6 +7,7 @@ public class RoadSimulator
         //Setup Traffic Map
         TrafficMap trafficMap = new TrafficMap(60, 20);
         trafficMap.initTrafficMap();
+        
 
     }
 
