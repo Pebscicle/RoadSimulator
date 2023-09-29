@@ -36,8 +36,8 @@ public class TrafficMap {
     public void initTrafficMap()
     {
         Random rd = new Random();
-        int xRoad = rd.nextInt(trafficBoard.length);
-        int yRoad = rd.nextInt(trafficBoard[0].length);
+        int xRoad = rd.nextInt(Y);
+        int yRoad = rd.nextInt(X);
 
         System.out.println("x road: " + xRoad);
         System.out.println("y road: " + yRoad);
@@ -53,7 +53,7 @@ public class TrafficMap {
                 }
                 if(j == yRoad)
                 {
-                    trafficBoard[i][j] = new Cell(new RoadTile("WE"));
+                    trafficBoard[i][j] = new Cell(new RoadTile("NS"));
                 }
                 if(i == xRoad && j == yRoad)
                 {
